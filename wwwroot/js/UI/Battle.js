@@ -84,8 +84,12 @@ const AppFacade = (function (Battle) {
 })(BattleModule);
 
 EventBus.subscribe("battleAdded", (battle) => {
-    //limpiar campos del formulario
-    console.log(battle)
+    $("#title").val("")
+    $("#description").val("")
+    $("#rapper1").val("")
+    $("#rapper2").val("")
+    $("#videoUrl").val("")
+    $("#date").val("")
 });
 document.getElementById("btnAddBattle").addEventListener("click", function () {
     let title = $("#title").val()

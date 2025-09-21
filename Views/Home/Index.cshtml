@@ -7,6 +7,9 @@
 <h1>Bienvenido a Rap Battles Online</h1>
 
 @* Secciones fragmentadas *@
+@await Html.PartialAsync("../Battle/_NewBattle")
 @await Html.PartialAsync("../Battle/_ListBattles", Model.Battles)
 @await Html.PartialAsync("../Battle/_Ranking", Model.Ranking)
 @await Html.PartialAsync("../Battle/_AboutRap")
+
+<script src="~/js/UI/Battle.js" asp-append-version="true"></script>

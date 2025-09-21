@@ -1,0 +1,11 @@
+﻿@model IEnumerable<RapBattles.Models.RankingEntry>
+
+<section id="ranking" class="ranking-section">
+    <h2>Ranking de Raperos</h2>
+    <ol>
+        @foreach (var entry in Model)
+        {
+            <li>@entry.RapperName - @entry.Votes votos</li>
+        }
+    </ol>
+</section>

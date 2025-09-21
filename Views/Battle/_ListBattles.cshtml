@@ -1,0 +1,23 @@
+﻿@model IEnumerable<RapBattles.Models.Battle>
+
+<section id="list-battles" class="battles-section">
+    <h2>Batallas recientes</h2>
+    <ul>
+        @foreach (var battle in Model)
+        {
+            <li>
+                <h3>@battle.Title</h3>
+                <p>@battle.Description</p>
+                <video width="320" height="240" controls>
+                    <source src="@battle.VideoUrl" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <form asp-controller="Battle" asp-action="Vote" method="post">
+                    <input type="hidden" name="battleId" value="@battle.Id" />
+                    <button type="submit" name="voteFor" value="rapper1">@battle.Rapper1</button>
+                    <button type="submit" name="voteFor" value="rapper2">@battle.Rapper2</button>
+                </form>
+            </li>
+        }
+    </ul>
+</section>

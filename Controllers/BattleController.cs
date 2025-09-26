@@ -3,6 +3,7 @@ using RapBattles.Models;
 
 namespace RapBattles.Controllers
 {
+    [Route("api/[controller]")]
     public class BattleController : Controller
     {
         // Datos de ejemplo
@@ -25,6 +26,32 @@ namespace RapBattles.Controllers
         public IActionResult List()
         {
             return View(_battles);
+        }
+
+        [HttpPost("new-battle")]
+        public IActionResult CreateBattle([FromBody] Battle battle)
+        {
+            try
+            {
+
+            if (battle == null)
+                return BadRequest("Datos inválidos.");
+
+            // Aquí podrías hacer validaciones extra si quieres
+            if (string.IsNullOrWhiteSpace(battle.Title))
+                return BadRequest("El título es obligatorio.");
+
+                // Ejemplo: guardar en base de datos (mock de momento)
+                // _context.Battles.Add(new BattleEntity { ... });
+                // _context.SaveChanges();
+
+                // Devuelves la batalla creada
+                return Ok("batalla " + battle.Title + " guardada con éxito");
+            }
+            catch
+            {
+                return BadRequest("Error al guardar la batalla");
+            }
         }
 
         // POST: /Battle/Vote

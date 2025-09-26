@@ -1,5 +1,4 @@
-﻿import { EventBus } from '../../Core/EventBus.js';
-import { battlesApi } from '../../Api/battleApi.js'
+﻿import { battlesApi } from '../../Api/battleApi.js'
 // ===============================
 // Battle Module
 // ===============================
@@ -7,7 +6,6 @@ export const BattleModule = (function () {
 
     function addBattle(battle) {
         battlesApi.saveBattle(battle)
-        EventBus.publish("battleAdded", battle); // notifica
     }
 
     function listBattle() { return personas; }

@@ -1,4 +1,5 @@
 import { httpService } from '../Core/httpService.js';
+import { EventBus } from '../Core/EventBus.js';
 
 export const battlesApi = (() => {
     function getBattles() {
@@ -11,9 +12,14 @@ export const battlesApi = (() => {
         console.log("Get by Id")
     }
 
-    function saveBattle(battle) {
-        //return httpService.post('/api/personas', persona);
-        console.log("guardar")
+    async function saveBattle(battle) {
+        const result = await httpService.post("/api/battle/new-battle", battle);
+        if (result.success) {
+            EventBus.publish("elementSaved", result.data);
+            EventBus.publish("battleAdded");
+        } else {
+            EventBus.publish("showErrors", [result.error]);
+        }
     }
 
     function updateBattle(battle) {

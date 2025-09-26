@@ -1,3 +1,4 @@
+
 export const httpService = (() => {
     async function request(url, options = {}) {
         try {
@@ -5,15 +6,24 @@ export const httpService = (() => {
                 headers: { 'Content-Type': 'application/json' },
                 ...options
             });
-
+            let resultText = await response.text();
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                return {
+                    success: false,
+                    error: resultText
+                };
             }
 
-            return await response.json();
+            return {
+                success: true,
+                data: resultText
+            };
         } catch (err) {
             console.error("HTTP Error:", err);
-            throw err;
+            return {
+                success: false,
+                error: "Error de conexión"
+            };
         }
     }
 

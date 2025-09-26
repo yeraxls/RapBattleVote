@@ -1,7 +1,7 @@
 import { BattleFacade } from '../Facade/BattleFacade.js'
 import { EventBus } from '../../Core/EventBus.js'
 
-EventBus.subscribe("battleAdded", (battle) => {
+EventBus.subscribe("battleAdded", () => {
     $("#title").val("")
     $("#description").val("")
     $("#rapper1").val("")

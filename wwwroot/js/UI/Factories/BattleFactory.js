@@ -3,8 +3,8 @@
 // ===============================
 export const BattleFactory = (function () {
     return {
-        create: function (title, Description, Rapper1, Rapper2, VideoUrl, Date) {
-            return { title, Description, Rapper1, Rapper2, VideoUrl, Date };
+        create: function (title, description, rapper1, rapper2, videoUrl, date) {
+            return { title, description, rapper1, rapper2, videoUrl, date };
         }
     };
 })();

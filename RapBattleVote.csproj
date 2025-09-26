@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\js\Api\" />
     <Folder Include="wwwroot\js\UI\Controllers\" />
+    <Folder Include="wwwroot\js\UI\Validations\" />
   </ItemGroup>
 
 </Project>

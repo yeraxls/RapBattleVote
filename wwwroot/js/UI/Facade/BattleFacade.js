@@ -1,5 +1,7 @@
 ﻿import { BattleModule } from '../Modules/BattleModule.js';
 import { BattleFactory } from '../Factories/BattleFactory.js';
+import { validateBattle } from '../Validations/battleValidations.js'
+import { EventBus } from '../../Core/EventBus.js'
 
 // ===============================
 // App Facade
@@ -7,13 +9,13 @@ import { BattleFactory } from '../Factories/BattleFactory.js';
 export const BattleFacade = (function (Battle) {
 
     function addBattle(title, Description, Rapper1, Rapper2, VideoUrl, DateBattle) {
-        //if (!nombre || nombre.trim() === "") {
-        //    console.warn("❌ [VALIDACIÓN] No se puede agregar una persona sin nombre.");
-        //    return "Error: nombre inválido";
-        //}
-
-        //console.log("✅ [LOG] Agregando persona:", nombre);
         const battle = BattleFactory.create(title, Description, Rapper1, Rapper2, VideoUrl, DateBattle);
+        const errors = validateBattle(battle);
+        if (errors.length > 0) {
+            EventBus.publish("showErrors", errors);
+            return;
+        }
+
         return Battle.add(battle);
     }
 

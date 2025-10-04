@@ -12,12 +12,13 @@
                     <source src="@battle.VideoUrl" type="video/mp4">
                     Tu navegador no soporta video.
                 </video>
-                <form asp-controller="Battle" asp-action="Vote" method="post">
+                <form asp-controller="Battle" asp-action="Vote" method="post" class="vote-form">
                     <input type="hidden" name="battleId" value="@battle.Id" />
-                    <button type="submit" name="voteFor" value="rapper1">@battle.Rapper1</button>
-                    <button type="submit" name="voteFor" value="rapper2">@battle.Rapper2</button>
+                    <button type="button" class="vote-btn" data-battle-id="@battle.Id" data-rapper="@battle.Rapper1">@battle.Rapper1</button>
+                    <button type="button" class="vote-btn" data-battle-id="@battle.Id" data-rapper="@battle.Rapper2">@battle.Rapper2</button>
                 </form>
             </li>
         }
+
     </ul>
 </section>

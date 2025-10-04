@@ -1,12 +1,14 @@
 ﻿import { BattleModule } from '../Modules/BattleModule.js';
+import { VoteModule } from '../Modules/VoteModule.js';
 import { BattleFactory } from '../Factories/BattleFactory.js';
+import { VoteFactory } from '../Factories/VoteFactory.js';
 import { validateBattle } from '../Validations/battleValidations.js'
 import { EventBus } from '../../Core/EventBus.js'
 
 // ===============================
 // App Facade
 // ===============================
-export const BattleFacade = (function (Battle) {
+export const MainFacade = (function (Battle) {
 
     function addBattle(title, Description, Rapper1, Rapper2, VideoUrl, DateBattle) {
         const battle = BattleFactory.create(title, Description, Rapper1, Rapper2, VideoUrl, DateBattle);
@@ -16,7 +18,7 @@ export const BattleFacade = (function (Battle) {
             return;
         }
 
-        return Battle.add(battle);
+        Battle.add(battle);
     }
 
     function searchBattle(nombre) {
@@ -29,9 +31,14 @@ export const BattleFacade = (function (Battle) {
         return Battle.list();
     }
 
+    function voteBattle(battleId, rapper) {
+        var vote = VoteFactory.create(battleId, rapper)
+        VoteModule.voteBattle(vote)
+    }
+
     // Interfaz pública
     return {
-        addBattle, searchBattle, listBattle
+        addBattle, voteBattle
     };
 
 })(BattleModule);

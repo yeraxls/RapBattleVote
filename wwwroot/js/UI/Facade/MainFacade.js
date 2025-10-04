@@ -4,6 +4,7 @@ import { BattleFactory } from '../Factories/BattleFactory.js';
 import { VoteFactory } from '../Factories/VoteFactory.js';
 import { validateBattle } from '../Validations/battleValidations.js'
 import { EventBus } from '../../Core/EventBus.js'
+import { EventTypes } from '../../Core/EventTypes.js'
 
 // ===============================
 // App Facade
@@ -14,7 +15,7 @@ export const MainFacade = (function (Battle) {
         const battle = BattleFactory.create(title, Description, Rapper1, Rapper2, VideoUrl, DateBattle);
         const errors = validateBattle(battle);
         if (errors.length > 0) {
-            EventBus.publish("showErrors", errors);
+            EventBus.publish(EventTypes.SHOW_ERRORS, errors);
             return;
         }
 
